@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-基础算法笔记（一）" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/25/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
+  <time class="dt-published" datetime="2022-10-24T16:38:20.000Z" itemprop="datePublished">2022-10-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/10/25/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="第一章-基础算法"><a href="#第一章-基础算法" class="headerlink" title="第一章 基础算法"></a>第一章 基础算法</h1><blockquote>
+<p>y总推荐的学习方式：课上学思想和代码，课下进行背过和题目的练习，有一种方法是对于模板题，写代码3-5次，此后基本就有一个比较深的记忆了</p>
+</blockquote>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><h4 id="主要思想：分治"><a href="#主要思想：分治" class="headerlink" title="主要思想：分治"></a>主要思想：分治</h4><ol>
+<li>确定分界点：取左端点、右端点、中间点、随机（前三种常用）</li>
+<li><strong>调整区间(最重要</strong>)：获得两个区间，使得第一个区间的所有数都≤x，第二个区间的所有数都≥x</li>
+<li>递归处理左右两段</li>
+</ol>
+<h5 id="调整区间的一种暴力方法"><a href="#调整区间的一种暴力方法" class="headerlink" title="调整区间的一种暴力方法"></a>调整区间的一种暴力方法</h5><ol>
+<li><p>得到两个额外数组a[]和b[]</p>
+</li>
+<li><p>扫描q[l~r]，如果数≤x则插入a，反之插入b</p>
+</li>
+<li><p>然后把ab数组再赋值给q</p>
+<blockquote>
+<p>这是一种暴力的做法，他的时间复杂度仍为O(n)，但是需要开辟额外的空间</p>
+</blockquote>
+</li>
+</ol>
+<h5 id="调整区间的一种优美方法（※）"><a href="#调整区间的一种优美方法（※）" class="headerlink" title="调整区间的一种优美方法（※）"></a>调整区间的一种优美方法（※）</h5><ol>
+<li><p>左右两端放一个指针</p>
+</li>
+<li><p>先控制左指针从左向右移动，当左指针指向的元素≤x，那么则切换到右指针</p>
+</li>
+<li><p>然后控制右指针从右向左移动，当右指针指向的元素＞x，那么则将左右指针指向的元素移位（swap函数），同时两个指针分别向中间移动一位</p>
+</li>
+<li><p>如此循环，当左右指针停下来的时候满足左右指针相遇（或穿过）时停止</p>
+<blockquote>
+<p>这种调整的方法会涉及到很多边界问题，对于边界问题很复杂的算法，y总的建议是多看看、背背模板（毕竟是很多人使用过，经过千锤百炼的算法）</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> q[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">quick_sort</span><span class="params">(<span class="type">int</span> q[],<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l&gt;=r) <span class="keyword">return</span>;</span><br><span class="line">	<span class="comment">//区间里没有数</span></span><br><span class="line">	<span class="type">int</span> i=l<span class="number">-1</span>, j=r+<span class="number">1</span>, x = q[l + r &gt;&gt; <span class="number">1</span>];</span><br><span class="line">	<span class="comment">//每次操作都先进行移位</span></span><br><span class="line">	<span class="keyword">while</span>(i&lt;j)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//第一个while是循环执行这个迭代</span></span><br><span class="line">		<span class="keyword">do</span> i++; <span class="keyword">while</span>(q[i] &lt; x);</span><br><span class="line">		<span class="keyword">do</span> j--; <span class="keyword">while</span>(q[j] &gt; x);</span><br><span class="line">		<span class="keyword">if</span>(i&lt;j) <span class="built_in">swap</span>(q[i],q[j]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">quick_sort</span>(q,l,j);</span><br><span class="line">	<span class="built_in">quick_sort</span>(q,j+<span class="number">1</span>,r);</span><br><span class="line">	<span class="comment">//注意这里如果用j和j+1，那么先前选择的元素一定不能是q[r]</span></span><br><span class="line">	<span class="comment">//如果这里用i-1和i，那么先前选择的元素一定不能是q[l]</span></span><br><span class="line">    <span class="comment">//可以用[0,1]来理解这个问题，会出现无限递归的问题</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;q[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">quicksort</span>(q,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,q[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p>平均时间复杂度为O(nlogn)，类似归并排序，虽然每次划分区间的大小不一定是n&#x2F;2，但是可以证明期望为n&#x2F;2</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><h4 id="主要思想：分治-1"><a href="#主要思想：分治-1" class="headerlink" title="主要思想：分治"></a>主要思想：分治</h4><ol>
+<li><p>确定分界点：mid&#x3D;(l+r)&#x2F;2</p>
+</li>
+<li><p>递归排序left,right</p>
+</li>
+<li><p><strong>归并——合二为一（※）</strong></p>
+<p>由于每个元素只被扫描一次，所以归并的时间复杂度为O(n)</p>
+</li>
+</ol>
+<blockquote>
+<p>如果两个数字相同，尽量选取第一个序列里的数，这样能保证算法的稳定性，也注意，快排是不稳定的，但是可以使用一个二元组&lt;ai,i&gt;也可以保证算法的稳定性</p>
+<p><em>y总：稳定不稳定其实没什么卵用</em></p>
+</blockquote>
+<h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e6</span> + <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> q[N],tmp[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge_sort</span><span class="params">(<span class="type">int</span> q[],<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(l &gt;= r) <span class="keyword">return</span>;</span><br><span class="line">	<span class="comment">//判断排序条件</span></span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> mid = (l+r)/<span class="number">2</span>;</span><br><span class="line">	<span class="built_in">merge_sort</span>(q,l,mid), <span class="built_in">merge_sort</span>(q,mid+<span class="number">1</span>,r);</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> k=<span class="number">0</span>, i=l, j=mid+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;=mid &amp;&amp; j&lt;=r)</span><br><span class="line">		<span class="keyword">if</span>(q[i]&lt;=q[j]) tmp[k++] = q[i++];</span><br><span class="line">		<span class="keyword">else</span> tmp[k++] = q[j++];</span><br><span class="line">	<span class="keyword">while</span>(i&lt;=mid) tmp[k++] = q[i++];</span><br><span class="line">	<span class="keyword">while</span>(j&lt;=r) tmp[k++] = q[j++];</span><br><span class="line">	<span class="comment">//有一边每循环完，则把剩下的数塞入tmp数组中</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(i=l,j=<span class="number">0</span>;i&lt;=r;i++,j++) q[i]=tmp[j];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i&lt;n; i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;q[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">merge_sort</span>(q,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,q[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h4><p>可以知道，每次归并的时间复杂度为O(n)总共被划分了logn次，所以时间复杂度为O(nlogn)</p>
+<h2 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h2><h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><blockquote>
+<p>y总：整数二分是一个很蛋疼的问题，稍微处理不好就出现一堆死循环</p>
+</blockquote>
+<h4 id="二分的本质"><a href="#二分的本质" class="headerlink" title="二分的本质"></a>二分的本质</h4><p>本质不是单调性，如果有单调性那么一定可以二分，但是可以二分的题目不一定非要有单调性</p>
+<p><strong>本质上是把大的区间一分为二，对于某种性质，一边满足一边不满足，二分就可以寻找性质的边界点</strong></p>
+<h5 id="寻找红色的边界点"><a href="#寻找红色的边界点" class="headerlink" title="寻找红色的边界点"></a>寻找红色的边界点</h5><ol>
+<li>选择mid</li>
+<li>if(check(mid))，如果是true，那么mid就在红色区间里，更新方式是令l&#x3D;mid，如果mid不满足性质（false），那么答案就一定在[l,mid-1]上</li>
+</ol>
+<h4 id="一般解决方法"><a href="#一般解决方法" class="headerlink" title="一般解决方法"></a>一般解决方法</h4><ol>
+<li>先写一个check函数</li>
+<li>思考check函数的true false如何影响我们对区间的更新</li>
+<li>如果更新方式是l&#x3D;mid,r&#x3D;mid-1,那么mid那里需要补上+1，如果r&#x3D;mid,l&#x3D;mid+1的话，就不需要补上＋1，核心是，l&#x3D;mid则mid＋1，如果是r&#x3D;mid则mid不需要补上＋1</li>
+</ol>
+<blockquote>
+<p>本质：每次分都保证答案是在那个区间里的，不断这样细分下去</p>
+<p>题目可能无解，但二分一定有解</p>
+</blockquote>
+<h4 id="代码模板"><a href="#代码模板" class="headerlink" title="代码模板"></a>代码模板</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;<span class="comment">/*...*/</span>&#125;;	<span class="comment">//检查x是否满足某种性质</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方案①，当区间被划分成[l,mid]和[mid+1,r]时使用</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bsearch_1</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">check</span>(mid)) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">check</span>(l)) <span class="keyword">return</span> l;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//方案②，当区间被划分为[l,mid-1]和[mid,r]时使用</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bsearch_2</span><span class="params">(<span class="type">int</span> l,<span class="type">int</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;r)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = l + r &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">check</span>(mid)) l = mid;</span><br><span class="line">        <span class="keyword">else</span> r = mid<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">check</span>(l)) <span class="keyword">return</span> l;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>相比整数二分，不需要考虑整除的截取问题，当要寻找的区间长度很小时，就可以认为已经找到了答案（这个时候只需要在区间端点处取一个值作为要找的那个值就行）</p>
+<blockquote>
+<p>一个经验值，如果题目要求保留六位小数，那么区间长度可以取1E-8，如果四位则写1E-6，etc</p>
+<p>同时有意思的是，也可以不用精度来限制，而是用for循环的次数来做限制，如果进行了n次for循环，那么我们的精度有：<br>$$<br>精度&#x3D;\frac{区间长度}{2^n}<br>$$</p>
+</blockquote>
+<h4 id="代码模板-1"><a href="#代码模板-1" class="headerlink" title="代码模板"></a>代码模板</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">double</span> x)</span></span>&#123;<span class="comment">/*...*/</span>&#125;	<span class="comment">//检查x是否满足条件</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">bsearch_3</span><span class="params">(<span class="type">double</span> l, <span class="type">double</span> r)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">double</span> eps = <span class="number">1e-6</span>;</span><br><span class="line">    <span class="keyword">while</span>(r - l &gt; eps)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">double</span> mid = (l + r) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">check</span>(mid)) r = mid;</span><br><span class="line">        <span class="keyword">else</span> l = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">    <span class="comment">//这里要注意，当mid元素check成功之后赋值r=mid，说明左半部分是不满足条件的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="高精度"><a href="#高精度" class="headerlink" title="高精度"></a>高精度</h2><h3 id="大数相加-A-B"><a href="#大数相加-A-B" class="headerlink" title="大数相加(A+B)"></a>大数相加(A+B)</h3><blockquote>
+<p>A和B的位数大概是10^6</p>
+</blockquote>
+<h4 id="大整数的存储"><a href="#大整数的存储" class="headerlink" title="大整数的存储"></a>大整数的存储</h4><p>大整数的存储方式是：把每一位存在数组中，这就涉及到一个问题，数组的0下标位置存的是最高位还是最低位呢？答案是存最低位会比较好，原因是两个整数相加会存在进位的问题，在末尾进位会比在开头进位方便得多</p>
+<h4 id="大整数相加"><a href="#大整数相加" class="headerlink" title="大整数相加"></a>大整数相加</h4><p>可以认为每一位是由<br>$$<br>C_i &#x3D; A_i+B_i+T\quad（T是上一位的进位）<br>$$<br>得来的</p>
+<h4 id="代码模板-2"><a href="#代码模板-2" class="headerlink" title="代码模板"></a>代码模板</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C=A+B, A≥0, B≥0</span></span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">add</span><span class="params">(vector&lt;<span class="type">int</span>&gt; &amp;A, vector&lt;<span class="type">int</span>&gt; &amp;B)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(A.<span class="built_in">size</span>() &lt; B.<span class="built_in">size</span>())	<span class="keyword">return</span> <span class="built_in">add</span>(B,A);</span><br><span class="line">    </span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; C;</span><br><span class="line">    <span class="type">int</span> t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i &lt; A.<span class="built_in">size</span>();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        t += A[i];</span><br><span class="line">        <span class="keyword">if</span>(i &lt; B.<span class="built_in">size</span>()) t += B[i];</span><br><span class="line">        C.<span class="built_in">push_back</span>(t % <span class="number">10</span>);</span><br><span class="line">        t /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(t) C.<span class="built_in">push_back</span>(t);</span><br><span class="line">    <span class="keyword">return</span> C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h3 id="大数相减-A-B"><a href="#大数相减-A-B" class="headerlink" title="大数相减(A-B)"></a>大数相减(A-B)</h3><blockquote>
+<p>A和B的位数大概是10^6</p>
+</blockquote>
+<h3 id="大数乘小数-A-a"><a href="#大数乘小数-A-a" class="headerlink" title="大数乘小数(A * a)"></a>大数乘小数(A * a)</h3><blockquote>
+<p>$$<br>A的位数≤10^6, a≤10^9<br>$$</p>
+</blockquote>
+<h3 id="大数除小数-A-x2F-a"><a href="#大数除小数-A-x2F-a" class="headerlink" title="大数除小数(A &#x2F; a)"></a>大数除小数(A &#x2F; a)</h3><blockquote>
+<p>$$<br>A的位数≤10^6, a≤10^9<br>$$</p>
+</blockquote>
+<h2 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h2><h2 id="离散化"><a href="#离散化" class="headerlink" title="离散化"></a>离散化</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/25/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="clgcdjulx0000jwvk1d3me2i2" data-title="笔记" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/25/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
